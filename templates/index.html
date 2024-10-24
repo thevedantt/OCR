@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAGRAM - Start Learning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Oxanium', sans-serif;
+            background: url('{{ url_for('static', filename='images/homebg.jpg') }}') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Container for centering the content */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: white;
+        }
+
+        /* 3D Effect Animation Styles */
+        .effect3d {
+            animation-name: effect3d;
+            animation-duration: 2s; /* Adjust the duration as needed */
+            animation-iteration-count: infinite; /* Set to infinite for continuous animation */
+            font-size: 80px; /* Decreased font size to half the previous size */
+        }
+
+        @keyframes effect3d {
+            to {
+                text-shadow: 0 1px 0 #ccc,
+                             0 2px 0 #c9c9c9,
+                             0 3px 0 #bbb,
+                             0 4px 0 #b9b9b9,
+                             0 5px 0 #aaa,
+                             0 6px 1px rgba(0, 0, 0, .1),
+                             0 0 5px rgba(0, 0, 0, .1),
+                             0 1px 3px rgba(0, 0, 0, .3),
+                             0 3px 5px rgba(0, 0, 0, .2),
+                             0 5px 10px rgba(0, 0, 0, .25),
+                             0 10px 10px rgba(0, 0, 0, .2),
+                             0 20px 20px rgba(0, 0, 0, .15);
+            }
+        }
+
+        /* Fade In Animation Styles */
+        .leFadeIn {
+            animation-name: leFadeIn;
+            animation-duration: 2s; /* Adjust duration as needed */
+            animation-fill-mode: forwards; /* Keep the final state of the animation */
+        }
+
+        @keyframes leFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Start Learning Button Styles */
+        .start-btn {
+            padding: 15px 30px;
+            background-color: transparent; /* Make the background transparent */
+            color: rgb(200, 194, 202);
+            text-decoration: none;
+            font-size: 20px; /* Original font size */
+            border-radius: 5px;
+            border: 2px solid rgba(186, 16, 198, 0.7); /* Border color for visibility */
+            position: absolute;
+            bottom: 30px; /* Positioning the button near the bottom */
+            transition: background-color 0.3s ease;
+            animation-name: leFadeIn; /* Added fade-in animation */
+            animation-duration: 2s; /* Duration of the fade-in effect */
+            animation-fill-mode: forwards; /* Keep the final state of the animation */
+        }
+
+        .start-btn:hover {
+            background-color: rgba(186, 16, 198, 0.3); /* Slightly darker transparent on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .start-btn {
+                font-size: 18px;
+                padding: 12px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .start-btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="effect3d leFadeIn">Welcome to EXAGRAM</span> <!-- Applied both effect3d and leFadeIn animations here -->
+        <a href="{{ url_for('register') }}" class="start-btn">Start Learning</a> <!-- Start Learning button with fade-in effect -->
+    </div>
+</body>
+</html>

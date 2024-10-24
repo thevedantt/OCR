@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        /* Animation Styles */
+        .leFadeInTop {
+            animation-name: leFadeInTop;
+            animation-duration: 0.7s; /* Duration of the animation */
+            animation-fill-mode: forwards; /* Keeps the final state */
+        }
+
+        @keyframes leFadeInTop {
+            from {
+                opacity: 0; /* Start fully transparent */
+                transform: translateY(-100%); /* Start from above */
+            }
+            to {
+                opacity: 1; /* End fully opaque */
+                transform: translateY(0); /* End at original position */
+            }
+        }
+
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('{{ url_for('static', filename='images/bg.svg') }}') no-repeat center center fixed; /* Background SVG */
+            background-size: cover; /* Cover the entire body */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1); /* More transparency */
+            border-radius: 20px; /* Increased border radius */
+            padding: 20px; /* Reduced padding */
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;  
+            flex-direction: column; /* Ensure children stack vertically */
+            align-items: stretch; /* Stretch children to fill container */
+            max-width: 600px; /* Reduced maximum width */
+            width: 90%; /* Full width for smaller screens */
+            backdrop-filter: blur(10px) saturate(150%); /* Blur effect */
+            -webkit-backdrop-filter: blur(10px) saturate(150%); /* Safari support */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Border color */
+        }
+
+        h2 {
+            color: rgb(29, 47, 79); /* Heading color */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            color: rgb(0, 0, 0); /* Label color */
+            font-weight: bold;
+        }
+
+        .form-control {
+            background-color: rgba(126, 87, 194, 0.8); /* Input field background color with transparency */
+            border: none;
+            border-radius: 5px;
+            color: white; /* Input text color */
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6); /* Placeholder color */
+        }
+
+        .btn-primary {
+            background-color: rgba(126, 87, 194, 0.8); /* Button background color with transparency */
+            border: none;
+            width: 100%; /* Full width button */
+            padding: 10px;
+            color: white; /* Button text color */
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 10px; /* Spacing above button */
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(106, 80, 177, 0.8); /* Button hover color with transparency */
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            .container {
+                width: 90%; /* Adjust width for smaller screens */
+            }
+        }
+
+        .form-row {
+            margin-bottom: 15px; /* Adjust space between rows */
+        }
+
+        .login-link {
+            text-align: center; /* Center the text */
+            margin-top: 20px; /* Add space above */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container leFadeInTop"> <!-- Apply the leFadeInTop class here -->
+    <h2><span>Register Form</span></h2>
+    <form action="/register" method="POST">
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="name"><span>Name:</span></label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="email"><span>Email:</span></label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="university"><span>University:</span></label>
+                    <select class="form-control" id="university" name="university" required>
+                        <option value="" disabled selected>Select your university</option>
+                        <option value="The University of Mumbai">The University of Mumbai</option>
+                        <option value="Savitribai Phule Pune University">Savitribai Phule Pune University</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="branch"><span>Branch:</span></label>
+                    <select class="form-control" id="branch" name="branch" required>
+                        <option value="" disabled selected>Select your branch</option>
+                        <option value="AI & DS Engineering">AI & DS Engineering</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Computer Science Engineering">Computer Science Engineering</option>
+                        <option value="Electrical Engineering">Electrical Engineering</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="year"><span>Year of Engineering:</span></label>
+                    <select class="form-control" id="year" name="year" required>
+                        <option value="" disabled selected>Select your year</option>
+                        <option value="F.E">F.E</option>
+                        <option value="S.E">S.E</option>
+                        <option value="T.E">T.E</option>
+                        <option value="B.E">B.E</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="pwd"><span>Password:</span></label>
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password" required>
+                </div>
+            </div>
+        </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" name="remember"> Remember me
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary"><span>Submit</span></button>
+    </form>
+    
+    <div class="login-link">
+        <p><span>Already have an account? <a href="/login" class="btn btn-link">Log in</a></span></p>
+    </div>
+</div>
+
+</body>
+</html>

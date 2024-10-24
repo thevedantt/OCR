@@ -1,0 +1,150 @@
+/* General Styles */
+body {
+    font-family: 'Oxanium', sans-serif; /* Using Oxanium font */
+    background-color: #dbc4f2; /* Fallback color for older browsers */
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(9, 1, 14, 0.05); /* Transparent sidebar */
+    padding-top: 20px;
+    transition: opacity 0.5s ease;
+    opacity: 0.95; /* Slight transparency */
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #f2f2f2;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: rgba(9, 1, 14, 0.2);
+}
+
+.sidebar a.active {
+    background-color: rgba(9, 1, 14, 0.1); /* Active link style */
+}
+
+.bottom-section {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.logout-button {
+    padding: 10px 15px;
+    background-color: #ff4b5c;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+}
+
+.logout-button:hover {
+    background-color: #ff3333;
+}
+
+/* Main Content Styles */
+.container {
+    margin-left: 260px; /* Space for sidebar */
+    padding: 20px;
+}
+
+.container h1 {
+    font-size: 36px;
+    color: #291B35;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent containers */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    font-size: 28px;
+    color: #291B35;
+    margin-bottom: 10px;
+}
+
+.section p, .section ul {
+    font-size: 16px;
+    color: #443850;
+    line-height: 1.6;
+}
+
+.section ul {
+    list-style-type: disc;
+    padding-left: 40px;
+}
+
+.section ul li {
+    margin-bottom: 10px;
+}
+
+/* Team Section */
+#team p {
+    font-size: 18px;
+    color: #291B35;
+}
+
+/* Logo Section */
+#logo {
+    text-align: center;
+}
+
+#logo img {
+    width: 150px;
+    height: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    
+    .sidebar a {
+        float: left;
+    }
+    
+    .container {
+        margin-left: 0;
+    }
+    
+    .section {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .section h2 {
+        font-size: 24px;
+    }
+
+    .container h1 {
+        font-size: 28px;
+    }
+
+    .section p, .section ul {
+        font-size: 14px;
+    }
+}

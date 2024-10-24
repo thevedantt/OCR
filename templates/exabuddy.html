@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExaBuddy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400&display=swap" rel="stylesheet"> <!-- Include Oxanium Font -->
+    <style>
+        body {
+            font-family: 'Oxanium', sans-serif; /* Apply Oxanium font */
+            background: url('{{ url_for('static', filename='images/bg.svg') }}') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+            display: flex; /* Use flexbox for layout */
+            justify-content: flex-start; /* Align content to the left */
+            align-items: flex-start; /* Align items to the top */
+            height: 100vh; /* Full viewport height */
+        }
+
+        .container {
+            position: relative; /* Position for absolute elements */
+            flex: 1; /* Allow the container to grow */
+            max-width: 1200px; /* Maximum width */
+            width: 100%; /* Full width */
+            margin-left: 220px; /* Leave space for sidebar */
+            margin-top: 20px; /* Top margin for spacing */
+            display: flex; /* Use flexbox for layout */
+        }
+
+        .left {
+            flex: 1; /* Allow the form section to grow */
+            display: flex; /* Center image vertically */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            padding-right: 20px;
+        }
+
+        .right {
+            flex: 0 0 400px; /* Fixed width for the chat history section */
+            padding: 20px; /* Padding around the chat history section */
+            background-color: #BFADD1; /* Background for the chat history */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
+            margin-left: auto; /* Move it to the rightmost side */
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: rgba(154, 116, 168, 0.05);
+            padding-top: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-family: 'Oxanium', sans-serif; /* Apply Oxanium font to sidebar links */
+        }
+
+        .sidebar a:hover {
+            background-color: rgba(180, 148, 201, 0.1);
+        }
+
+        .sidebar a.active {
+            background-color: rgba(8, 1, 13, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4B0082; /* Indigo */
+        }
+
+        h2 {
+            color: #4B0082; /* Indigo */
+            margin-top: 20px;
+        }
+
+        form {
+            margin: 20px 0;
+            padding: 20px;
+        }
+
+        input[type="text"], input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #9F85BA;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #6F4897; /* Indigo */
+            color: #fff1f1;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #6A5ACD; /* SlateBlue */
+        }
+
+        .chat-history {
+            max-width: 100%; /* Full width for the chat history */
+            max-height: 400px; /* Max height to limit space */
+            overflow-y: auto; /* Scrollable if content overflows */
+        }
+
+        .chat-history p {
+            margin: 5px 0;
+        }
+
+        strong {
+            color: #4B0082; /* Indigo */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                margin-left: 0; /* Remove margin for mobile view */
+            }
+
+            .left, .right {
+                flex: none;
+                padding: 0;
+            }
+
+            .right {
+                margin: 0; /* Remove left margin on smaller screens */
+            }
+
+            .sidebar {
+                position: relative; /* Change sidebar position for mobile */
+                height: auto; /* Allow height to adjust */
+                width: 100%; /* Full width on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="top-section">
+            <a href="/dashboard" class="{% if request.path == '/dashboard' %}active{% endif %}">PROFILE</a>
+            <a href="/exabuddy" class="{% if request.path == '/exabuddy' %}active{% endif %}">EXABUDDY</a>
+            <a href="/index2" class="{% if request.path == '/index2' %}active{% endif %}">TESTGEN</a>
+            <a href="/about" class="{% if request.path == '/about' %}active{% endif %}">ABOUT</a>
+        </div>
+        
+        <!-- Logout Button at Bottom -->
+        <div class="bottom-section">
+            <a href="/logout" class="logout-button">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="left">
+            <div>
+                <h1>Document Processing</h1>
+                <form action="/upload_files_buddy" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="pdfs" multiple>
+                    <button type="submit">Submit & Process</button>
+                </form>
+
+                <h2>Ask a Question:</h2>
+                <form action="/ask_question_buddy" method="POST">
+                    <input type="text" name="question" placeholder="Questions About Syllabus:">
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="right">
+            <h2>Chat History:</h2>
+            <div class="chat-history">
+                {% for question, answer in zip(past, generated) %}
+                    <p><strong>You:</strong> {{ question }}</p>
+                    <p><strong>EXABUDDY:</strong> {{ answer }}</p>
+                {% endfor %}
+            </div>
+            <form action="/clear_history_buddy" method="POST">
+                <button type="submit">Clear History</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

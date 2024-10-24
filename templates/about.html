@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>About Us - EXAGRAM</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400&display=swap" rel="stylesheet"> <!-- Include Oxanium Font -->
+    <style>
+        body {
+            background: url('{{ url_for('static', filename='images/bg.svg') }}') no-repeat center center fixed; /* Background SVG */
+            background-color: #dbc4f2; /* Fallback color */
+            font-family: Arial, sans-serif;
+            opacity: 0; /* Start with hidden */
+            animation: fadeIn 1s forwards; /* Fade-in animation for body */
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1; /* Fade to visible */
+            }
+        }
+
+        .container {
+            margin-left: 220px; /* Adjusted margin to fit sidebar */
+            margin-top: 50px;
+            border-radius: 8px;
+            background: rgba(226, 211, 243, 0.8); /* Light lavender background for container with transparency */
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 1200px;
+            opacity: 0; /* Start with hidden */
+            animation: fadeIn 1s forwards; /* Fade-in animation for container */
+            animation-delay: 0.5s; /* Delay to start after body */
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background-color: rgba(154, 116, 168, 0.05); /* Sidebar with 5% opacity */
+            padding-top: 20px;
+            padding-left: 10px;
+            padding-right: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Ensure the logout button stays at the bottom */
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-family: 'Oxanium', sans-serif; /* Apply Oxanium font */
+        }
+
+        .sidebar a:hover {
+            background-color: rgba(180, 148, 201, 0.1); /* Slightly more transparent hover effect */
+        }
+
+        .sidebar a.active {
+            background-color: rgba(9, 1, 15, 0.1); /* Slightly more transparent active page color */
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #07000c;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+            color: #301a46;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #241f27; /* Light grey for secondary info */
+            margin-bottom: 15px;
+        }
+
+        /* Logo Section */
+        .logo-container {
+            text-align: center;
+            margin: 50px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8); /* Light transparent background */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-container img {
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar Navigation -->
+<div class="sidebar">
+    <div class="top-section">
+     <a href="/dashboard" class="{% if request.path == '/dashboard' %}active{% endif %}">PROFILE</a>
+     <a href="/exabuddy" class="{% if request.path == '/exabuddy' %}active{% endif %}">EXABUDDY</a>
+     <a href="/index2" class="{% if request.path == '/index2' %}active{% endif %}">TESTGEN</a>
+     <a href="/about" class="{% if request.path == '/about' %}active{% endif %}">ABOUT</a>
+    </div>
+    
+    <!-- Logout Button at Bottom -->
+    <div class="bottom-section">
+        <a href="/logout" class="logout-button">Logout</a>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+    <h2>About Us</h2>
+    
+    <!-- Our Mission Section -->
+    <div class="mission-container mb-4 p-3 border rounded" style="background: rgba(255, 255, 255, 0.8);">
+        <h3>Our Mission</h3>
+        <p>At EXAGRAM, our mission is to empower students in their exam preparation by providing innovative and efficient solutions that enhance learning and reduce the time spent gathering study materials.</p>
+    </div>
+    
+    <!-- Our Vision Section -->
+    <div class="vision-container mb-4 p-3 border rounded" style="background: rgba(255, 255, 255, 0.8);">
+        <h3>Our Vision</h3>
+        <p>We envision a future where every student has access to smart educational tools that facilitate effective and flexible learning, enabling them to achieve their academic goals.</p>
+    </div>
+
+    <!-- What We Offer Section -->
+    <div class="offerings-container mb-4 p-3 border rounded" style="background: rgba(255, 255, 255, 0.8);">
+        <h3>What We Offer</h3>
+        <p><strong>Versatile Question Paper Generator (Testgen):</strong> Our advanced question paper generator creates customized question papers based on various patterns, weightage, and past year questions, ensuring that students get a tailored assessment experience.</p>
+        
+        <p><strong>Exabuddy:</strong> This digital assistant helps students interact with both digital and handwritten notes. It uses state-of-the-art technology to retrieve information from PDF documents, making study sessions more productive.</p>
+
+        <p><strong>Exaconnect:</strong> A community platform that allows students to interact and collaborate, fostering a supportive learning environment where they can share knowledge and resources.</p>
+
+        <p><strong>Exavault:</strong> Our secure cloud storage solution allows users to store and manage their notes, question papers, and other important study materials, ensuring easy access anytime, anywhere.</p>
+    </div>
+
+    <!-- Our Team Section -->
+    <div class="team-container mb-4 p-3 border rounded" style="background: rgba(255, 255, 255, 0.8);">
+        <h3>Our Team</h3>
+        <p>EXAGRAM is developed by <strong>DevDeadlocks</strong>, a dedicated team of educators, developers, and innovators who are passionate about transforming the educational experience. We work tirelessly to develop tools that meet the diverse needs of students in today's digital age.</p>
+    </div>
+
+    <!-- Join Us Section -->
+    <div class="join-us-container mb-4 p-3 border rounded" style="background: rgba(255, 255, 255, 0.8);">
+        <h3>Join Us</h3>
+        <p>We believe in the potential of every student and are committed to supporting them in their academic journeys. Join us as we reshape the way students prepare for exams and connect with knowledge.</p>
+    </div>
+
+    <!-- Contact Us Section -->
+    <div class="contact-info mb-4 p-3 border rounded" style="background: rgba(255, 255, 255, 0.8);">
+        <h3>Contact Us</h3>
+        <p>Have questions or feedback? Feel free to reach out to us at <a href="mailto:your-email@example.com">your-email@example.com</a> or follow us on our social media channels.</p>
+    </div>
+
+    <!-- Logo Section -->
+    <div class="logo-container">
+        <h3>Our Logo</h3>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="EXAGRAM Logo"> <!-- Adjust 'logo.png' as per your image -->
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
